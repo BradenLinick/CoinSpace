@@ -39,3 +39,7 @@ ul {
 .coin:hover .delete-icon {
   display: block;
 }
+
+.rm-border {
+  border: 1px solid black !important;
+}
