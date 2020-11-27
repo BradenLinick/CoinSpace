@@ -58,7 +58,7 @@ const CoinDetailPage = () => {
       setIsLoading(false)
     }
     fetchData()
-  }, [])
+  }, [id])
 
   const renderData = () => {
     if (isLoading) {
@@ -67,7 +67,7 @@ const CoinDetailPage = () => {
     return (
       <div className="coinlist">
         <HistoryChart data={coinData} />
-        <CoinData data={coinData.data} />
+        <CoinData data={coinData.detail} />
       </div>
     )
   }
