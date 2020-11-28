@@ -6,7 +6,11 @@
 }
 
 body {
-  background-color: #263238
+  background-image: url('./assets/crypto-bg.jpg');
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 ul {
@@ -27,7 +31,7 @@ ul {
 }
 
 .coin-data-category {
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .delete-icon {
@@ -42,4 +46,12 @@ ul {
 
 .rm-border {
   border: 1px solid black !important;
+}
+
+.coindata {
+  margin: 0 0;
+}
+
+.coindata-hr {
+  border-color: rgba(255,255,255,.3);
 }

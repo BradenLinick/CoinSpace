@@ -3,12 +3,19 @@ import { useParams } from 'react-router-dom'
 import HistoryChart from '../components/HistoryChart'
 import CoinData from '../components/CoinData'
 import coinGecko from '../apis/coinGecko'
+import { css } from '@emotion/core'
+import RingLoader from 'react-spinners/RingLoader'
 
 const CoinDetailPage = () => {
   
   const { id } = useParams()
   const [coinData, setCoinData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+  `
 
   const formatData = data => {
     return data.map(el => {
@@ -62,7 +69,7 @@ const CoinDetailPage = () => {
 
   const renderData = () => {
     if (isLoading) {
-      return <div>Loading...</div>
+      return <div><RingLoader css={override} color={'#ffffff'} size={150} /></div>
     }
     return (
       <div className="coinlist">

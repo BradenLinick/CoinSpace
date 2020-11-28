@@ -9,7 +9,8 @@ export const WatchListContextProvider = props => {
     'ethereum', 
     'ripple', 
     'tether'
-  ])
+    ]
+  )
 
   useEffect(() => {
     localStorage.setItem('watchList', watchList)

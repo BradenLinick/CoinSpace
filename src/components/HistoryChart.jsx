@@ -6,6 +6,7 @@ const HistoryChart = ({data}) => {
   const chartRef = useRef()
   const { day, week, year, detail } = data
   const [timeFormat, setTimeFormat] = useState('24h')
+  const [chart, setChart] = useState({})
 
   const determineTimeFormat = () => {
     switch(timeFormat) {
@@ -21,8 +22,8 @@ const HistoryChart = ({data}) => {
   }
 
   useEffect(() => {
-    if (chartRef &&  chartRef.current && detail) {
-      const chartInstance = new Chartjs(chartRef.current, {
+    if (chartRef && chartRef.current && detail) {
+      new Chartjs(chartRef.current, {
         type: 'line',
         data: {
           datasets: [
@@ -30,7 +31,7 @@ const HistoryChart = ({data}) => {
               label: `${detail.name} price`,
               data: determineTimeFormat(),
               backgroundColor: 'rgba(174, 305, 194, 0.5)',
-              borderColor: 'rgba(174, 305, 184, 0.4)',
+              borderColor: 'rgba(255, 255, 51, 0.4)',
               pointRadius: 0
             }
           ]
@@ -44,12 +45,12 @@ const HistoryChart = ({data}) => {
     if (detail) {
       return (
         <>
-          <p className="my-0">Current Price: ${detail.current_price.toFixed(2)}</p>
+          <p className="my-0 text-white">Current Price: ${detail.current_price.toFixed(2)}</p>
           <p className={
             detail.price_change_24h < 0
             ? 'text-danger my-0'
             : 'text-success my-0'
-            }>Last 24hrs: {detail.price_change_percentage_24h.toFixed(2)}%
+            }><span className="text-white">24hr: </span>{detail.price_change_percentage_24h.toFixed(2)}%
           </p>
         </>
       )
@@ -57,14 +58,15 @@ const HistoryChart = ({data}) => {
   }
 
   return (
-    <div className="bg-white border mt-2 rounded p-3">
+    <div className="bg-dark border mt-2 rounded p-3">
       <div>{renderPrice()}</div>
       <div>
         <canvas ref={chartRef} id="myChart" width={250} height={250}></canvas>
       </div>
       <div className="chart-button mt-1">
         <button 
-          onClick={() => setTimeFormat('24h')} className="rm-border button btn-outline-secondary btn-sm"
+          onClick={() => setTimeFormat('24h')} 
+          className="rm-border button btn-outline-secondary btn-sm"
         >
           24h
         </button>
